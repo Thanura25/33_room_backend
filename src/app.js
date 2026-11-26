@@ -1,5 +1,8 @@
 const cors = require('cors');
 const express = require('express');
+const mongoose = require('mongoose');
+const { connectDatabase } = require('./config/db');
+const { getAdminConfig, syncEnvironmentAdmin } = require('./services/adminService');
 const authRoutes = require('./routes/authRoutes');
 const billRoutes = require('./routes/billRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
@@ -22,12 +25,42 @@ app.use(cors({ origin: (origin, callback) => (!origin || origins.has(origin.repl
 app.use(express.json({ limit: '15mb' }));
 app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 
+let bootstrapPromise = null;
+
+async function ensureDatabaseReady() {
+  if (mongoose.connection.readyState === 1) {
+    return;
+  }
+
+  if (!bootstrapPromise) {
+    bootstrapPromise = (async () => {
+      getAdminConfig();
+      await connectDatabase(process.env.MONGODB_URI);
+      await Promise.all(Object.values(mongoose.models).map((model) => model.init()));
+      await syncEnvironmentAdmin();
+    })().finally(() => {
+      bootstrapPromise = null;
+    });
+  }
+
+  return bootstrapPromise;
+}
+
 app.get(['/health', '/api/health'], (_request, response) => {
   response.json({
     status: 'ok',
     uptime: Math.round(process.uptime()),
     timestamp: new Date().toISOString(),
   });
+});
+
+app.use('/api', async (_request, _response, next) => {
+  try {
+    await ensureDatabaseReady();
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 app.use('/api/auth', authRoutes);
 app.use('/api/residents', residentRoutes);
