@@ -1,0 +1,16 @@
+🏠 *Monthly Utility Bill – {{1}}*
+⚡ *Electricity Bill:* Rs. {{2}}
+💧 *Water Bill:* Rs. {{3}}
+👥 *Total Members:* {{4}}
+💰 *Current Month Total:*
+Rs. {{5}}
+👤 *Amount per Person:*
+Rs. {{6}}
+📌 *Previous Outstanding Payments:*
+🔸 *Total Previous Arrears:* Rs. {{7}}
+━━━━━━━━━━━━━━
+✅ *FINAL TOTAL TO PAY:*
+*Rs. {{8}}*
+━━━━━━━━━━━━━━
+Please make the payment for *{{9}}* before *{{10}}*.
+Thank you! 🙏

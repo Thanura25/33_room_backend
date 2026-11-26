@@ -1,0 +1,28 @@
+{
+  "name": "room33_monthly_utility_bill_v2",
+  "language": "en",
+  "category": "UTILITY",
+  "parameter_format": "POSITIONAL",
+  "components": [
+    {
+      "type": "BODY",
+      "text": "🏠 *Monthly Utility Bill – {{1}}*\n⚡ *Electricity Bill:* Rs. {{2}}\n💧 *Water Bill:* Rs. {{3}}\n👥 *Total Members:* {{4}}\n💰 *Current Month Total:*\nRs. {{5}}\n👤 *Amount per Person:*\nRs. {{6}}\n📌 *Previous Outstanding Payments:*\n🔸 *Total Previous Arrears:* Rs. {{7}}\n━━━━━━━━━━━━━━\n✅ *FINAL TOTAL TO PAY:*\n*Rs. {{8}}*\n━━━━━━━━━━━━━━\nPlease make the payment for *{{9}}* before *{{10}}*.\nThank you! 🙏",
+      "example": {
+        "body_text": [
+          [
+            "September / 2026",
+            "3,500.00",
+            "6,500.00",
+            "2",
+            "10,000.00",
+            "5,000.00",
+            "1,200.00",
+            "6,200.00",
+            "September / 2026",
+            "2026-09-30"
+          ]
+        ]
+      }
+    }
+  ]
+}

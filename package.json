@@ -1,0 +1,24 @@
+{
+  "name": "33-backend",
+  "version": "1.0.0",
+  "description": "Admin bill management API for 33 Room",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test test/*.test.js",
+    "whatsapp:template": "node scripts/export-whatsapp-template.js",
+    "whatsapp:check": "node scripts/check-whatsapp.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.1.5"
+  }
+}
